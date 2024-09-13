@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class Menu {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "menu_id_seq")
     @SequenceGenerator(name = "menu_id_seq", sequenceName = "menu_id_seq", allocationSize = 1)
     private Long id;
