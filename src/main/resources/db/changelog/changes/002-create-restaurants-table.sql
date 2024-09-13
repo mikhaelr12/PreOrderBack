@@ -1,9 +1,10 @@
-create table restaurants(
-    id bigint not null primary key,
+create table restaurants
+(
+    id             bigint       not null primary key,
     restaurantName varchar(255) not null,
-    logo bytea,
-    categoryId bigint,
-    CONSTRAINT FK_CATEGORY_RESTAURANT FOREIGN KEY (categoryId) REFERENCES categories(id)
+    logo           bytea,
+    categoryId     bigint,
+    CONSTRAINT FK_CATEGORY_RESTAURANT FOREIGN KEY (categoryId) REFERENCES categories (id)
 );
 
 alter table restaurants owner to root;

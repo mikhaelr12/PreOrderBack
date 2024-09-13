@@ -1,6 +1,7 @@
-create table categories(
-                           id bigint not null primary key,
-                           categoryName varchar(255) not null
+create table categories
+(
+    id           bigint       not null primary key,
+    categoryName varchar(255) not null
 );
 
 alter table categories owner to root;
