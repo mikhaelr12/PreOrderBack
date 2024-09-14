@@ -17,14 +17,14 @@ public class Restaurant {
     @SequenceGenerator(name = "restaurant_id_seq", sequenceName = "restaurant_id_seq", allocationSize = 1)
     private Long id;
 
-    @Column(name = "restaurantName", nullable = false)
-    private String name;
+    @Column(name = "restaurant_name", nullable = false)
+    private String restaurant_name;
 
     @Lob
     @Column(name = "logo")
     private byte[] logo;
 
-    @Column(name = "categoryId")
+    @Column(name = "category_id")
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_CATEGORY_RESTAURANT"))
-    private Long categoryId;
+    private Long category_id;
 }

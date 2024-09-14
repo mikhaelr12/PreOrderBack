@@ -1,8 +1,8 @@
 create table menus
 (
     id         bigint not null primary key,
-    locationId bigint,
-    CONSTRAINT FK_LOCATION_MENU FOREIGN KEY (locationId) REFERENCES locations (id)
+    location_id bigint,
+    CONSTRAINT FK_LOCATION_MENU FOREIGN KEY (location_id) REFERENCES locations (id)
 );
 
 alter table menus owner to root;

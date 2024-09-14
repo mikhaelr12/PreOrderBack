@@ -18,6 +18,6 @@ public class Menu {
     private Long id;
 
 
-    @JoinColumn(name = "locationId", foreignKey = @ForeignKey(name = "FK_LOCATION_MENU"))
-    private Long locationId;
+    @JoinColumn(name = "location_id", foreignKey = @ForeignKey(name = "FK_LOCATION_MENU"))
+    private Long location_id;
 }

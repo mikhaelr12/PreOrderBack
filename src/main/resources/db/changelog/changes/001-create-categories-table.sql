@@ -1,11 +1,16 @@
-create table categories
-(
-    id           bigint       not null primary key,
-    categoryName varchar(255) not null
+CREATE SCHEMA IF NOT EXISTS order_schema AUTHORIZATION root;
+
+SET search_path TO order_schema;
+
+CREATE TABLE IF NOT EXISTS categories (
+        id           BIGINT NOT NULL PRIMARY KEY,
+        category_name VARCHAR(255) NOT NULL
 );
 
-alter table categories owner to root;
+ALTER TABLE categories OWNER TO root;
 
-create sequence category_id_seq;
+CREATE SEQUENCE category_id_seq;
 
-alter sequence category_id_seq owner to root;
+ALTER SEQUENCE category_id_seq OWNER TO root;
+
+ALTER TABLE categories ALTER COLUMN id SET DEFAULT nextval('category_id_seq');

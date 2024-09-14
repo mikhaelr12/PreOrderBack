@@ -20,31 +20,31 @@ public class Booking {
     @SequenceGenerator(name = "booking_id_seq", sequenceName = "booking_id_seq", allocationSize = 1)
     private Long id;
 
-    @Column(name = "userId",nullable = false)
+    @Column(name = "user_id",nullable = false)
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_USER_BOOKING"))
-    private Long userId;
+    private Long user_id;
 
-    @Column(name = "tableId",nullable = false)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_RESTAURANTTABLE_BOOKING"))
-    private Long tableId;
+    @Column(name = "table_id",nullable = false)
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_TABLE_BOOKING"))
+    private Long table_id;
 
-    @Column(name = "locationId", nullable = false)
+    @Column(name = "location_id", nullable = false)
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_LOCATION_BOOKING"))
-    private Long locationId;
+    private Long location_id;
 
-    @Column(name = "bookingStatus")
+    @Column(name = "booking_status")
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private Status booking_status;
 
-    @Column(name = "orderTime")
-    private LocalDateTime orderTime;
+    @Column(name = "order_time")
+    private LocalDateTime order_time;
 
-    @Column(name = "numOfPeople")
-    private int numOfPeople;
+    @Column(name = "no_people")
+    private int no_people;
 
     @Column(name = "preferences")
     private String preferences;
 
-    @Column(name = "finalPrice")
-    private int finalPrice;
+    @Column(name = "final_price")
+    private int final_price;
 }
