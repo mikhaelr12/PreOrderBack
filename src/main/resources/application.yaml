@@ -1,3 +1,7 @@
+server:
+  servlet:
+    context-path: /api/preorder
+
 spring:
   application:
     name: java-course-spring
@@ -14,3 +18,7 @@ spring:
   liquibase:
     change-log: db/changelog/db.changelog-master.yaml
     enabled: true
+
+application:
+  name: @project.artifactId@
+  version: @project.version@

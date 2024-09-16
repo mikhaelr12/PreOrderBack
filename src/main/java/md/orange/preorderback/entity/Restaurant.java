@@ -22,7 +22,7 @@ public class Restaurant {
 
     @Lob
     @Column(name = "logo")
-    private byte[] logo;
+    private Byte[] logo;
 
     @Column(name = "category_id")
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_CATEGORY_RESTAURANT"))

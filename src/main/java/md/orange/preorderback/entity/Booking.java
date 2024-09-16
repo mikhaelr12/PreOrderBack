@@ -22,15 +22,11 @@ public class Booking {
 
     @Column(name = "user_id",nullable = false)
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_USER_BOOKING"))
-    private Long user_id;
+    private Long userId;
 
     @Column(name = "table_id",nullable = false)
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_TABLE_BOOKING"))
-    private Long table_id;
-
-    @Column(name = "location_id", nullable = false)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_LOCATION_BOOKING"))
-    private Long locationId;
+    private Long tableId;
 
     @Column(name = "booking_status")
     @Enumerated(EnumType.STRING)
@@ -40,11 +36,11 @@ public class Booking {
     private LocalDateTime orderTime;
 
     @Column(name = "no_people")
-    private int noPeople;
+    private Integer noPeople;
 
     @Column(name = "preferences")
     private String preferences;
 
     @Column(name = "final_price")
-    private int finalPrice;
+    private Double finalPrice;
 }

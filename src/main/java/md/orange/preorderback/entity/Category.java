@@ -19,5 +19,4 @@ public class Category {
 
     @Column(name = "category_name", nullable = false)
     private String categoryName;
-
 }

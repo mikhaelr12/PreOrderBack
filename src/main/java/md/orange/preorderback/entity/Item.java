@@ -21,7 +21,7 @@ public class Item {
     private String dishName;
 
     @Column(name = "price", nullable = false)
-    private int price;
+    private Double price;
 
     @Column(name = "description", nullable = false)
     private String description;
@@ -30,9 +30,9 @@ public class Item {
     private Long menuId;
 
     @Column(name = "is_available")
-    private boolean isAvailable;
+    private Boolean isAvailable;
 
     @Lob
     @Column(name = "image")
-    private byte[] image;
+    private Byte[] image;
 }
