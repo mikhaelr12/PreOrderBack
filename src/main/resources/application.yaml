@@ -2,7 +2,7 @@ spring:
   application:
     name: java-course-spring
   datasource:
-    url: jdbc:postgresql://localhost:5432/preorder
+    url: jdbc:postgresql://localhost:5432/preorder?currentSchema=order_schema
     username: root
     password: 1234
   jpa:

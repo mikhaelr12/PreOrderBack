@@ -19,5 +19,5 @@ public class Menu {
 
 
     @JoinColumn(name = "location_id", foreignKey = @ForeignKey(name = "FK_LOCATION_MENU"))
-    private Long location_id;
+    private Long locationId;
 }

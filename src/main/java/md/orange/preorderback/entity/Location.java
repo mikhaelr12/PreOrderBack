@@ -22,5 +22,5 @@ public class Location {
 
     @Column(name = "restaurant_id")
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_RESTAURANT_LOCATION"))
-    private Long restaurant_id;
+    private Long restaurantId;
 }

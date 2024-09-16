@@ -19,5 +19,5 @@ public class Table {
 
     @Column(name = "location_id")
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_LOCATION_TABLE"))
-    private Long location_id;
+    private Long locationId;
 }

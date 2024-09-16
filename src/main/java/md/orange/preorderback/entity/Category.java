@@ -18,6 +18,6 @@ public class Category {
     private Long id;
 
     @Column(name = "category_name", nullable = false)
-    private String category_name;
+    private String categoryName;
 
 }

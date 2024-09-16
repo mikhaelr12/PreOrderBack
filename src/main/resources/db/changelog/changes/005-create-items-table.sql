@@ -1,11 +1,11 @@
 create table items
 (
-    id          bigint       not null primary key,
-    dishName    varchar(255) not null unique,
-    price       int          not null,
-    description varchar(255) not null,
+    id           bigint       not null primary key,
+    dish_name    varchar(255) not null unique,
+    price        int          not null,
+    description  varchar(255) not null,
     is_available BIT,
-    image       bytea,
+    image        bytea,
     menu_id      bigint,
     CONSTRAINT FK_MENU_ITEM FOREIGN KEY (menu_id) REFERENCES menus (id)
 );

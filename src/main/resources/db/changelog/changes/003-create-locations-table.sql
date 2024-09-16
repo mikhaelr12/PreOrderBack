@@ -1,7 +1,7 @@
 create table locations
 (
-    id           bigint       not null primary key,
-    address      varchar(255) not null,
+    id            bigint       not null primary key,
+    address       varchar(255) not null,
     restaurant_id bigint,
     CONSTRAINT FK_RESTAURANT_LOCATION FOREIGN KEY (restaurant_id) REFERENCES restaurants (id)
 );

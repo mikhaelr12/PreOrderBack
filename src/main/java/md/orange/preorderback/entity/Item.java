@@ -18,7 +18,7 @@ public class Item {
     private Long id;
 
     @Column(name = "dish_name", nullable = false, unique = true)
-    private String dish_name;
+    private String dishName;
 
     @Column(name = "price", nullable = false)
     private int price;
@@ -27,10 +27,10 @@ public class Item {
     private String description;
 
     @JoinColumn(name = "menu_id", foreignKey = @ForeignKey(name = "FK_MENU_ITEM"))
-    private Long menu_id;
+    private Long menuId;
 
     @Column(name = "is_available")
-    private boolean is_available;
+    private boolean isAvailable;
 
     @Lob
     @Column(name = "image")

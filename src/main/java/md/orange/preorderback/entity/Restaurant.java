@@ -18,7 +18,7 @@ public class Restaurant {
     private Long id;
 
     @Column(name = "restaurant_name", nullable = false)
-    private String restaurant_name;
+    private String restaurantName;
 
     @Lob
     @Column(name = "logo")
@@ -26,5 +26,5 @@ public class Restaurant {
 
     @Column(name = "category_id")
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_CATEGORY_RESTAURANT"))
-    private Long category_id;
+    private Long categoryId;
 }

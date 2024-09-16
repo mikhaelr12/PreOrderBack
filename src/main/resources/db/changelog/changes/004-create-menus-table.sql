@@ -1,6 +1,6 @@
 create table menus
 (
-    id         bigint not null primary key,
+    id          bigint not null primary key,
     location_id bigint,
     CONSTRAINT FK_LOCATION_MENU FOREIGN KEY (location_id) REFERENCES locations (id)
 );

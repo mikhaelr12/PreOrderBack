@@ -30,21 +30,21 @@ public class Booking {
 
     @Column(name = "location_id", nullable = false)
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_LOCATION_BOOKING"))
-    private Long location_id;
+    private Long locationId;
 
     @Column(name = "booking_status")
     @Enumerated(EnumType.STRING)
-    private Status booking_status;
+    private Status bookingStatus;
 
     @Column(name = "order_time")
-    private LocalDateTime order_time;
+    private LocalDateTime orderTime;
 
     @Column(name = "no_people")
-    private int no_people;
+    private int noPeople;
 
     @Column(name = "preferences")
     private String preferences;
 
     @Column(name = "final_price")
-    private int final_price;
+    private int finalPrice;
 }
