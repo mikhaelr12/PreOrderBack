@@ -1,9 +1,9 @@
 create table items
 (
-    id           bigint       not null primary key,
-    dish_name    varchar(255) not null unique,
-    price        int          not null,
-    description  varchar(255) not null,
+    id           bigint           not null primary key,
+    dish_name    varchar(255)     not null unique,
+    price        double precision not null,
+    description  varchar(255)     not null,
     is_available BIT,
     image        bytea,
     menu_id      bigint,
