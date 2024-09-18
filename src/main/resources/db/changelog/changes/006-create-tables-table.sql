@@ -7,6 +7,6 @@ create table tables
 
 alter table tables owner to root;
 
-create sequence restaurant_table_id_seq;
+create sequence table_id_seq;
 
-alter sequence restaurant_table_id_seq owner to root;
+alter sequence table_id_seq owner to root;
