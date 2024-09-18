@@ -20,7 +20,7 @@ public class Location {
     @Column(name = "address", nullable = false)
     private String address;
 
-    @Column(name = "restaurant_id")
+    @Column(name = "restaurant_id", nullable = false)
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_RESTAURANT_LOCATION"))
     private Long restaurantId;
 }
