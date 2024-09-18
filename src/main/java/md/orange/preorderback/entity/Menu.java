@@ -17,7 +17,7 @@ public class Menu {
     @SequenceGenerator(name = "menu_id_seq", sequenceName = "menu_id_seq", allocationSize = 1)
     private Long id;
 
-
-    @JoinColumn(name = "location_id", foreignKey = @ForeignKey(name = "FK_LOCATION_MENU"))
+    @Column(name = "location_id", nullable = false)
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_LOCATION_MENU"))
     private Long locationId;
 }
