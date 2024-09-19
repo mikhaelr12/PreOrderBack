@@ -1,5 +1,6 @@
 package md.orange.preorderback.controller;
 
+import lombok.RequiredArgsConstructor;
 import md.orange.preorderback.dto.MenuDTO;
 import md.orange.preorderback.dto.RestaurantDTO;
 import md.orange.preorderback.dto.request.RestaurantFilterDTO;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/restaurant-resource")
 public class RestaurantResourceController {
@@ -19,8 +21,15 @@ public class RestaurantResourceController {
         return ResponseEntity.ok(restaurantDTOList);
     }
 
-    @GetMapping("/menu/{locationId}")
-    public ResponseEntity<MenuDTO> getMenuByLocationId(@PathVariable Long locationId) {
-        return ResponseEntity.ok(new MenuDTO());
+    @GetMapping("/menu/{restaurantId}")
+    public ResponseEntity<MenuDTO> getMenuByRestaurantId(@PathVariable Long locationId) {
+        //return ResponseEntity.ok(locationId);
+        return null;
+    }
+
+    @GetMapping("/restaurants/{categoryId}")
+    public ResponseEntity<List<RestaurantDTO>> getRestaurantsByCategoryId(@PathVariable Long categoryId) {
+        List<RestaurantDTO> restaurantDTOList = new ArrayList<>();
+        return null;
     }
 }

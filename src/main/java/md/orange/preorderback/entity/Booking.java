@@ -24,9 +24,13 @@ public class Booking {
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_USER_BOOKING"))
     private Long userId;
 
-    @Column(name = "table_id",nullable = false)
+    @Column(name = "table_id")
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_TABLE_BOOKING"))
     private Long tableId;
+
+    @Column(name = "location_id",nullable = false)
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_LOCATION_BOOKING"))
+    private Long locationId;
 
     @Column(name = "booking_status")
     @Enumerated(EnumType.STRING)
