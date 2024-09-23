@@ -20,10 +20,6 @@ public class Booking {
     @SequenceGenerator(name = "booking_id_seq", sequenceName = "booking_id_seq", allocationSize = 1)
     private Long id;
 
-    @Column(name = "user_id",nullable = false)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_USER_BOOKING"))
-    private Long userId;
-
     @Column(name = "table_id")
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_TABLE_BOOKING"))
     private Long tableId;

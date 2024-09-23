@@ -92,4 +92,20 @@ public class RestaurantResourceServiceImpl implements RestaurantResourceService 
         }
         throw new RuntimeException("Menu not found by id " + restaurantId);
     }
+
+    @Override
+    public List<LocationDTO> getLocationsByRestaurantId(Long restaurantId) {
+        List<Location> locations = locationRepository.findByRestaurantId(restaurantId);
+        if(!locations.isEmpty())
+        {
+            return locations.stream()
+                    .map(location -> LocationDTO.builder()
+                            .id(location.getId())
+                            .address(location.getAddress())
+                            .build()
+                    ).toList();
+        }
+        throw new RuntimeException("Location not found by id " + restaurantId);
+    }
+
 }
