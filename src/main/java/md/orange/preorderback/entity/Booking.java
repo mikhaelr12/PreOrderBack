@@ -47,4 +47,11 @@ public class Booking {
 
     @Column(name = "final_price")
     private Double finalPrice;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
 }
