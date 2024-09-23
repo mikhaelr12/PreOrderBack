@@ -1,18 +1,16 @@
 package md.orange.preorderback.service.impl;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import md.orange.preorderback.dto.request.BookingDTO;
 import md.orange.preorderback.entity.Booking;
-import md.orange.preorderback.entity.Table;
 import md.orange.preorderback.enums.Status;
+import md.orange.preorderback.exception.BookingException;
 import md.orange.preorderback.repository.BookingRepository;
-import md.orange.preorderback.repository.TableRepository;
 import md.orange.preorderback.service.BookingService;
+import md.orange.preorderback.service.RestaurantResourceService;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalTime;
-import java.util.List;
 
 
 @Slf4j
@@ -20,52 +18,29 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BookingServiceImpl implements BookingService {
     private final BookingRepository bookingRepository;
-    private final TableRepository tableRepository;
-
+    private final RestaurantResourceService restaurantResourceService;
 
     @Override
-    public void addBooking(BookingDTO bookingDTO) {
-
-        List<Booking> locationBookings = bookingRepository.getAllBookingsByLocationId(bookingDTO.getLocationId());
-        List<Table> tables = tableRepository.getTablesByLocationId(bookingDTO.getLocationId());
-
-        long bufferMinutes = 60;
-
-        LocalTime startBookingTime = LocalTime.of(8, 0); // 8 AM
-        LocalTime endBookingTime = LocalTime.of(21, 0); // 11 PM
-
-        LocalTime requestedTime = bookingDTO.getOrderTime().toLocalTime();
-        if (requestedTime.isBefore(startBookingTime) || requestedTime.isAfter(endBookingTime)) {
-            throw new RuntimeException("Bookings are only allowed between 08:00 and 21:00.");
-        }
-
-        List<Table> availableTables = tables.stream()
-                .filter(t -> locationBookings.stream()
-                        .noneMatch(b -> b.getTableId().equals(t.getId()) &&
-                                (b.getOrderTime()
-                                        .isBefore(bookingDTO.getOrderTime().plusMinutes(bufferMinutes)) &&
-                                        b.getOrderTime()
-                                                .plusMinutes(bufferMinutes)
-                                                .isAfter(bookingDTO.getOrderTime())))
-                ).toList();
-
-        if (!availableTables.isEmpty()) {
-            Table selectedTable = availableTables.get(0);
-
-            // Create and save the booking
-            Booking makeBooking = new Booking();
-            makeBooking.setTableId(selectedTable.getId());
-            makeBooking.setLocationId(bookingDTO.getLocationId());
-            makeBooking.setFinalPrice(bookingDTO.getFinalPrice());
-            makeBooking.setNoPeople(bookingDTO.getNoPeople());
-            makeBooking.setPreferences(bookingDTO.getPreferences());
-            makeBooking.setOrderTime(bookingDTO.getOrderTime());
-            makeBooking.setPhoneNumber(bookingDTO.getPhoneNumber());
-            makeBooking.setName(bookingDTO.getName());
-
-            bookingRepository.save(makeBooking);
+    @Transactional
+    public void validateAndBook(BookingDTO bookingdto) {
+        if (bookingdto.getTableId() != null && restaurantResourceService.isFreeTable(bookingdto.getTableId())) {
+            throw new BookingException("Table is not free, change it or try again later!");
         } else {
-            throw new RuntimeException("No available tables for the selected location and time.");
+            restaurantResourceService.updateTableFreeStatus(bookingdto.getTableId(), true);
         }
+
+        bookingRepository.save(
+                Booking.builder()
+                        .tableId(bookingdto.getTableId())
+                        .locationId(bookingdto.getLocationId())
+                        .bookingStatus(Status.IN_PROGRESS)
+                        .noPeople(bookingdto.getNoPeople())
+                        .preferences(bookingdto.getPreferences())
+                        .finalPrice(restaurantResourceService.calcAndGetPrice(bookingdto.getItemIds()))
+                        .name(bookingdto.getName())
+                        .phoneNumber(bookingdto.getPhoneNumber())
+                        .items(bookingdto.getItemIds().toString())
+                        .build()
+        );
     }
 }

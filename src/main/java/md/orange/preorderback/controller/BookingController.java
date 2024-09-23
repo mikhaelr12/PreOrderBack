@@ -1,11 +1,13 @@
 package md.orange.preorderback.controller;
 
-import io.swagger.v3.oas.annotations.Operation;
+import lombok.extern.slf4j.Slf4j;
 import md.orange.preorderback.dto.request.BookingDTO;
+import md.orange.preorderback.exception.BookingException;
 import md.orange.preorderback.service.BookingService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/booking")
 public class BookingController {
@@ -18,11 +20,13 @@ public class BookingController {
     @PutMapping
     public ResponseEntity<String> validateAndBook(@RequestBody BookingDTO bookingDTO) {
         try {
-            bookingService.addBooking(bookingDTO);
+            bookingService.validateAndBook(bookingDTO);
             return ResponseEntity.ok("Booking created successfully.");
+        } catch (BookingException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         } catch (Exception e) {
-            // Log the error for debugging purposes
-            return ResponseEntity.badRequest().body("Failed to create booking: " + e.getMessage());
+            log.error(e.getMessage());
+            return ResponseEntity.internalServerError().body("Service currently unavailable, please try a little later!");
         }
     }
 }

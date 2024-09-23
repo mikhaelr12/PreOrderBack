@@ -2,6 +2,7 @@ package md.orange.preorderback.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import md.orange.preorderback.enums.Status;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity(name = "bookings")
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Booking {
@@ -50,4 +52,11 @@ public class Booking {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    @Column(name = "items")
+    private String items;
+
+    @PrePersist
+    protected void onCreate() {
+        orderTime = LocalDateTime.now();
+    }
 }

@@ -13,4 +13,10 @@ public interface RestaurantResourceService {
     MenuDTO getMenuByRestaurantId(Long restaurantId);
 
     List<LocationDTO> getLocationsByRestaurantId(Long restaurantId);
+
+    Boolean isFreeTable(Long tableId);
+
+    void updateTableFreeStatus(Long tableId, Boolean flag);
+
+    Double calcAndGetPrice(List<Long> items);
 }

@@ -7,14 +7,9 @@ import md.orange.preorderback.dto.LocationDTO;
 import md.orange.preorderback.dto.MenuDTO;
 import md.orange.preorderback.dto.RestaurantDTO;
 import md.orange.preorderback.dto.request.RestaurantFilterDTO;
-import md.orange.preorderback.entity.Item;
-import md.orange.preorderback.entity.Location;
-import md.orange.preorderback.entity.Menu;
-import md.orange.preorderback.entity.Restaurant;
-import md.orange.preorderback.repository.ItemRepository;
-import md.orange.preorderback.repository.LocationRepository;
-import md.orange.preorderback.repository.MenuRepository;
-import md.orange.preorderback.repository.RestaurantRepository;
+import md.orange.preorderback.entity.*;
+import md.orange.preorderback.exception.BookingException;
+import md.orange.preorderback.repository.*;
 import md.orange.preorderback.service.RestaurantResourceService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -30,6 +25,7 @@ public class RestaurantResourceServiceImpl implements RestaurantResourceService 
     private final LocationRepository locationRepository;
     private final MenuRepository menuRepository;
     private final ItemRepository itemRepository;
+    private final TableRepository tableRepository;
 
     @Override
     public List<RestaurantDTO> getRestaurants(RestaurantFilterDTO filter) {
@@ -90,14 +86,14 @@ public class RestaurantResourceServiceImpl implements RestaurantResourceService 
                     .items(itemDTOS)
                     .build();
         }
+        //todo create custom exception
         throw new RuntimeException("Menu not found by id " + restaurantId);
     }
 
     @Override
     public List<LocationDTO> getLocationsByRestaurantId(Long restaurantId) {
         List<Location> locations = locationRepository.findByRestaurantId(restaurantId);
-        if(!locations.isEmpty())
-        {
+        if (!locations.isEmpty()) {
             return locations.stream()
                     .map(location -> LocationDTO.builder()
                             .id(location.getId())
@@ -105,7 +101,34 @@ public class RestaurantResourceServiceImpl implements RestaurantResourceService 
                             .build()
                     ).toList();
         }
+        //todo create custom exception
         throw new RuntimeException("Location not found by id " + restaurantId);
     }
 
+    @Override
+    public Boolean isFreeTable(Long tableId) {
+        Optional<Table> table = tableRepository.findById(tableId);
+        if (table.isEmpty()) {
+            throw new BookingException("Service currently unavailable, please try a little later!");
+        }
+        return table.get().getIsFree();
+    }
+
+    @Override
+    public void updateTableFreeStatus(Long tableId, Boolean status) {
+        tableRepository.updateTableFreeStatus(tableId, status);
+    }
+
+    @Override
+    public Double calcAndGetPrice(List<Long> items) {
+        List<Item> itemList = itemRepository.findAllById(items);
+
+        Double price = 0.0;
+
+        for (Item item : itemList) {
+            price += item.getPrice();
+        }
+
+        return price;
+    }
 }
