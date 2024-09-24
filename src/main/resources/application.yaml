@@ -22,3 +22,6 @@ spring:
 application:
   name: @project.artifactId@
   version: @project.version@
+
+app:
+  time-zone: Europe/Chisinau

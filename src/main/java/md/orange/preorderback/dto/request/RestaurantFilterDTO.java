@@ -8,5 +8,4 @@ import java.util.List;
 public class RestaurantFilterDTO {
     private List<Long> categoryIds;
     private String restaurantName;
-    private Boolean freeTable;
 }

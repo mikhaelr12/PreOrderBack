@@ -2,6 +2,7 @@ package md.orange.preorderback.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import md.orange.preorderback.enums.Status;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity(name = "bookings")
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Booking {
@@ -20,13 +22,13 @@ public class Booking {
     @SequenceGenerator(name = "booking_id_seq", sequenceName = "booking_id_seq", allocationSize = 1)
     private Long id;
 
-    @Column(name = "user_id",nullable = false)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_USER_BOOKING"))
-    private Long userId;
-
-    @Column(name = "table_id",nullable = false)
+    @Column(name = "table_id")
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_TABLE_BOOKING"))
     private Long tableId;
+
+    @Column(name = "location_id",nullable = false)
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_LOCATION_BOOKING"))
+    private Long locationId;
 
     @Column(name = "booking_status")
     @Enumerated(EnumType.STRING)
@@ -43,4 +45,18 @@ public class Booking {
 
     @Column(name = "final_price")
     private Double finalPrice;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
+    @Column(name = "items")
+    private String items;
+
+    @PrePersist
+    protected void onCreate() {
+        orderTime = LocalDateTime.now();
+    }
 }

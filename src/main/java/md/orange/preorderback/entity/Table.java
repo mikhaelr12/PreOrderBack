@@ -20,4 +20,7 @@ public class Table {
     @Column(name = "location_id")
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_LOCATION_TABLE"))
     private Long locationId;
+
+    @Column(name = "is_free", columnDefinition = "BIT")
+    private Boolean isFree;
 }
