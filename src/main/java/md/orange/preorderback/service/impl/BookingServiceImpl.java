@@ -9,10 +9,13 @@ import md.orange.preorderback.enums.Status;
 import md.orange.preorderback.exception.BookingException;
 import md.orange.preorderback.repository.BookingRepository;
 import md.orange.preorderback.service.BookingService;
+import md.orange.preorderback.service.CustomMap;
 import md.orange.preorderback.service.MailService;
 import md.orange.preorderback.service.RestaurantResourceService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -24,6 +27,35 @@ public class BookingServiceImpl implements BookingService {
     private final BookingRepository bookingRepository;
     private final RestaurantResourceService restaurantResourceService;
     private final MailService mailService;
+
+    @Override
+    public List<BookingDTO> getBookings(Long locationId) {
+        CustomMap<List<Long>, String> mapFromStringToLongList = (items) -> {
+            List<String> arrayToList = List.of(
+                    items.replace("[", "").replace("]", "").split(",")
+            );
+            List<Long> arrayToLongList = new ArrayList<>();
+            for (String s : arrayToList) {
+                arrayToLongList.add(Long.parseLong(s.trim()));
+            }
+            return arrayToLongList;
+        };
+
+        return bookingRepository.findAllByLocationId(locationId).stream()
+                .map(b -> BookingDTO.builder()
+                        .id(b.getId())
+                        .name(b.getName())
+                        .phoneNumber(b.getPhoneNumber())
+                        .noPeople(b.getNoPeople())
+                        .preferences(b.getPreferences())
+                        .locationId(b.getLocationId())
+                        .tableId(b.getTableId())
+                        .itemIds(mapFromStringToLongList.map(b.getItems()))
+                        .mail(b.getMail())
+                        .status(b.getBookingStatus())
+                        .build()
+                ).toList();
+    }
 
     @Override
     @Transactional

@@ -10,7 +10,7 @@
     </parent>
     <groupId>md.orange</groupId>
     <artifactId>PreOrderBack</artifactId>
-    <version>0.0.1</version>
+    <version>1.2.1</version>
     <name>PreOrderBack</name>
     <description>PreOrderBack</description>
     <properties>

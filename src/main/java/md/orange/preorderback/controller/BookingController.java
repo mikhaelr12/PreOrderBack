@@ -9,12 +9,19 @@ import md.orange.preorderback.service.BookingService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequestMapping("/booking")
 @RequiredArgsConstructor
 public class BookingController {
     private final BookingService bookingService;
+
+    @GetMapping("/{localtionId}")
+    public ResponseEntity<List<BookingDTO>> getBookings(@PathVariable Long localtionId) {
+        return ResponseEntity.ok(bookingService.getBookings(localtionId));
+    }
 
     @PutMapping
     public ResponseEntity<String> validateAndBook(@RequestBody BookingDTO bookingDTO) {

@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import md.orange.preorderback.enums.Status;
 
 import java.util.List;
 
@@ -14,12 +15,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookingDTO {
+    private Long id;
     @NotNull
     private String name;
     @NotNull
     private String phoneNumber;
     @Email
     private String mail;
+    @Builder.Default
     private Integer noPeople = 0;
     private String preferences;
     @NotNull
@@ -27,4 +30,5 @@ public class BookingDTO {
     private Long tableId;
     @NotNull
     private List<Long> itemIds;
+    private Status status;
 }

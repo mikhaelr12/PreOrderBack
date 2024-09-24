@@ -2,10 +2,7 @@ package md.orange.preorderback.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import md.orange.preorderback.dto.ItemDTO;
-import md.orange.preorderback.dto.LocationDTO;
-import md.orange.preorderback.dto.MenuDTO;
-import md.orange.preorderback.dto.RestaurantDTO;
+import md.orange.preorderback.dto.*;
 import md.orange.preorderback.dto.request.RestaurantFilterDTO;
 import md.orange.preorderback.entity.*;
 import md.orange.preorderback.exception.BookingException;
@@ -103,6 +100,18 @@ public class RestaurantResourceServiceImpl implements RestaurantResourceService 
         }
         //todo create custom exception
         throw new RuntimeException("Location not found by id " + restaurantId);
+    }
+
+    @Override
+    public List<TableDTO> getTablesByLocationId(Long locationId) {
+        log.info("Get tables by location id {}", locationId);
+        return tableRepository.getTablesByLocationId(locationId).stream()
+                .map(t -> TableDTO.builder()
+                        .id(t.getId())
+                        .locationId(t.getLocationId())
+                        .isFree(t.getIsFree())
+                        .build()
+                ).toList();
     }
 
     @Override

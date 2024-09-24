@@ -1,5 +1,6 @@
 package md.orange.preorderback.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import md.orange.preorderback.dto.LocationDTO;
 import md.orange.preorderback.dto.MenuDTO;
@@ -8,9 +9,7 @@ import md.orange.preorderback.dto.request.RestaurantFilterDTO;
 import md.orange.preorderback.service.RestaurantResourceService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import io.swagger.v3.oas.annotations.Operation;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -34,7 +33,7 @@ public class RestaurantResourceController {
     @GetMapping("/restaurants/has-free-table/{locationId}")
     @Operation(summary = "Verify if has free table", description = "Return a boolean var")
     public ResponseEntity<Boolean> hasFreeTable(@PathVariable Long locationId) {
-        return ResponseEntity.ok(true);
+        return ResponseEntity.ok(restaurantResourceService.isFreeTable(locationId));
     }
 
 
@@ -42,5 +41,10 @@ public class RestaurantResourceController {
     @Operation(summary = "Get locations by Restaurant Id", description = "Return a list of LocationDTO")
     public ResponseEntity<List<LocationDTO>> getLocationsByRestaurantId(@PathVariable Long restaurantId) {
         return ResponseEntity.ok(restaurantResourceService.getLocationsByRestaurantId(restaurantId));
+    }
+
+    @GetMapping("/tabels/{locationId}")
+    public ResponseEntity<?> getTablesByLocationId(@PathVariable Long locationId) {
+        return ResponseEntity.ok(restaurantResourceService.getTablesByLocationId(locationId));
     }
 }
