@@ -11,6 +11,7 @@ create table bookings
     name           varchar(255),
     phone_number   varchar(255),
     items          varchar(255),
+    mail           varchar(255),
     CONSTRAINT FK_TABLES_BOOKING FOREIGN KEY (table_id) REFERENCES tables (id),
     CONSTRAINT FK_LOCATIONS_BOOKING FOREIGN KEY (location_id) REFERENCES locations (id)
 

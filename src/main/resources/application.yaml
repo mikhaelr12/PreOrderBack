@@ -18,6 +18,17 @@ spring:
   liquibase:
     change-log: db/changelog/db.changelog-master.yaml
     enabled: true
+  mail:
+    host: smtp-mail.outlook.com
+    port: 587
+    username: preorder.orange@outlook.com
+    password: iFDUivFfRAkodRx
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 application:
   name: @project.artifactId@

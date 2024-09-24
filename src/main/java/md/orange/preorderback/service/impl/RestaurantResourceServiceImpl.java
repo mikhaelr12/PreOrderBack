@@ -131,4 +131,14 @@ public class RestaurantResourceServiceImpl implements RestaurantResourceService 
 
         return price;
     }
+
+    @Override
+    public String getItemsToText(List<Long> items) {
+        StringBuilder text = new StringBuilder();
+        List<Item> itemList = itemRepository.findAllById(items);
+        for (Item item : itemList) {
+            text.append(item.getDishName()).append(" - ").append(item.getPrice()).append("\n");
+        }
+        return text.toString();
+    }
 }

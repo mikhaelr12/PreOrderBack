@@ -19,4 +19,6 @@ public interface RestaurantResourceService {
     void updateTableFreeStatus(Long tableId, Boolean flag);
 
     Double calcAndGetPrice(List<Long> items);
+
+    String getItemsToText(List<Long> items);
 }

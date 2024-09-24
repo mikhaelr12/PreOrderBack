@@ -55,6 +55,9 @@ public class Booking {
     @Column(name = "items")
     private String items;
 
+    @Column(name = "mail")
+    private String mail;
+
     @PrePersist
     protected void onCreate() {
         orderTime = LocalDateTime.now();
