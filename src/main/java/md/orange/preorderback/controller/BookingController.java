@@ -23,7 +23,7 @@ public class BookingController {
         return ResponseEntity.ok(bookingService.getBookings(localtionId));
     }
 
-    @PutMapping
+    @PostMapping
     public ResponseEntity<String> validateAndBook(@RequestBody BookingDTO bookingDTO) {
         try {
             bookingService.validateAndBook(bookingDTO);
