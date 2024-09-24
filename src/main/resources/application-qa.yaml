@@ -1,6 +1,7 @@
 server:
   servlet:
     context-path: /api/preorder
+  port: 8083
 
 spring:
   application:
