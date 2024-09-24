@@ -26,10 +26,10 @@ public class BookingServiceImpl implements BookingService {
     @Override
     @Transactional
     public void validateAndBook(BookingDTO bookingdto) {
-        if (bookingdto.getTableId() != null && restaurantResourceService.isFreeTable(bookingdto.getTableId())) {
+        if (bookingdto.getTableId() != null && !restaurantResourceService.isFreeTable(bookingdto.getTableId())) {
             throw new BookingException("Table is not free, change it or try again later!");
         } else {
-            restaurantResourceService.updateTableFreeStatus(bookingdto.getTableId(), true);
+            restaurantResourceService.updateTableFreeStatus(bookingdto.getTableId(), false);
         }
 
         Booking booking = bookingRepository.save(

@@ -141,4 +141,9 @@ public class RestaurantResourceServiceImpl implements RestaurantResourceService 
         }
         return text.toString();
     }
+
+    @Override
+    public void freeTable() {
+        tableRepository.freeTable();
+    }
 }

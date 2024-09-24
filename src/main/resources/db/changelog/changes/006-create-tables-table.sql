@@ -2,7 +2,7 @@ create table tables
 (
     id          bigint not null primary key,
     location_id bigint,
-    is_free     boolean default false,
+    is_free     boolean default true,
     CONSTRAINT FK_LOCATION_TABLE FOREIGN KEY (location_id) REFERENCES locations (id)
 );
 

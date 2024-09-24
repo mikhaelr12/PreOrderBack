@@ -13,4 +13,8 @@ public interface TableRepository extends JpaRepository<Table, Long> {
     @Modifying
     @Query("update tables t set t.isFree = ?2 where t.id = ?1")
     void updateTableFreeStatus(Long id, Boolean status);
+
+    @Modifying
+    @Query("update tables t set t.isFree = true where t.isFree = false")
+    void freeTable();
 }

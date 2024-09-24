@@ -21,4 +21,6 @@ public interface RestaurantResourceService {
     Double calcAndGetPrice(List<Long> items);
 
     String getItemsToText(List<Long> items);
+
+    void freeTable();
 }
