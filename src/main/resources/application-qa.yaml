@@ -1,0 +1,38 @@
+server:
+  servlet:
+    context-path: /api/preorder
+
+spring:
+  application:
+    name: java-course-spring
+  datasource:
+    url: jdbc:postgresql://172.17.0.1:5432/preorder?currentSchema=order_schema
+    username: root
+    password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  liquibase:
+    change-log: db/changelog/db.changelog-master.yaml
+    enabled: true
+  mail:
+    host: smtp-mail.outlook.com
+    port: 587
+    username: preorder.orange@outlook.com
+    password: iFDUivFfRAkodRx
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+application:
+  name: @project.artifactId@
+  version: @project.version@
+
+app:
+  time-zone: Europe/Chisinau
