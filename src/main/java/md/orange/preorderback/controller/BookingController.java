@@ -18,9 +18,9 @@ import java.util.List;
 public class BookingController {
     private final BookingService bookingService;
 
-    @GetMapping("/{localtionId}")
-    public ResponseEntity<List<BookingDTO>> getBookings(@PathVariable Long localtionId) {
-        return ResponseEntity.ok(bookingService.getBookings(localtionId));
+    @GetMapping("/{locationId}")
+    public ResponseEntity<List<BookingDTO>> getBookings(@PathVariable Long locationId) {
+        return ResponseEntity.ok(bookingService.getBookings(locationId));
     }
 
     @PostMapping
