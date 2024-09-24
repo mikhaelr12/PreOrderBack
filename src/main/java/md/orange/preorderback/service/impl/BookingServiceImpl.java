@@ -13,6 +13,8 @@ import md.orange.preorderback.service.MailService;
 import md.orange.preorderback.service.RestaurantResourceService;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 
 @Slf4j
 @Service
@@ -54,6 +56,19 @@ public class BookingServiceImpl implements BookingService {
             mailService.sendMail(bookingdto.getMail(), SUBJECT, text);
         } catch (Exception e) {
             log.error("Failed sent mail, caused by: {}", e.getMessage());
+        }
+    }
+
+    @Override
+    @Transactional
+    public void finalizeBooking(Long bookingId, Status status) {
+        log.info("Finalizing booking: {} with status {}", bookingId, status);
+        Optional<Booking> booking = bookingRepository.findById(bookingId);
+
+        if (booking.isPresent()) {
+            booking.get().setBookingStatus(status);
+            bookingRepository.save(booking.get());
+            restaurantResourceService.updateTableFreeStatus(booking.get().getTableId(), true);
         }
     }
 }
