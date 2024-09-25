@@ -2,7 +2,7 @@ create table restaurants
 (
     id              bigint       not null primary key,
     restaurant_name varchar(255) not null,
-    logo            bytea,
+    logo            varchar(255),
     category_id     bigint,
     CONSTRAINT FK_CATEGORY_RESTAURANT FOREIGN KEY (category_id) REFERENCES categories (id)
 );

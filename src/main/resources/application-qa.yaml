@@ -37,3 +37,7 @@ application:
 
 app:
   time-zone: Europe/Chisinau
+
+restaurant:
+  resources:
+    path: /srv/preorder/resources/

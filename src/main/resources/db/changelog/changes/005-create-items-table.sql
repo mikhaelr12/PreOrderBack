@@ -5,7 +5,7 @@ create table items
     price        double precision not null,
     description  varchar(255)     not null,
     is_available boolean,
-    image        bytea,
+    image        varchar(255),
     menu_id      bigint,
     CONSTRAINT FK_MENU_ITEM FOREIGN KEY (menu_id) REFERENCES menus (id)
 );

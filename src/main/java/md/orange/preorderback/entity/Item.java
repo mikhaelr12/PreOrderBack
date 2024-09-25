@@ -32,7 +32,6 @@ public class Item {
     @Column(name = "is_available")
     private Boolean isAvailable;
 
-    @Lob
     @Column(name = "image")
-    private Byte[] image;
+    private String image;
 }

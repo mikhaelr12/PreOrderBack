@@ -15,5 +15,5 @@ public class ItemDTO {
     private Double price;
     private String description;
     private Boolean isAvailable;
-    private Byte[] image;
+    private byte[] image;
 }

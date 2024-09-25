@@ -20,9 +20,8 @@ public class Restaurant {
     @Column(name = "restaurant_name", nullable = false)
     private String restaurantName;
 
-    @Lob
     @Column(name = "logo")
-    private Byte[] logo;
+    private String logo;
 
     @Column(name = "category_id")
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_CATEGORY_RESTAURANT"))

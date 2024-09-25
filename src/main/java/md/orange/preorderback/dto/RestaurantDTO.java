@@ -14,6 +14,6 @@ import java.util.List;
 public class RestaurantDTO {
     private Long id;
     private String restaurantName;
-    private Byte[] logo;
+    private byte[] logo;
     private List<LocationDTO> locations;
 }
