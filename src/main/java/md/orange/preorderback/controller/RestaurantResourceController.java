@@ -2,16 +2,19 @@ package md.orange.preorderback.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import md.orange.preorderback.dto.LocationDTO;
-import md.orange.preorderback.dto.MenuDTO;
 import md.orange.preorderback.dto.RestaurantDTO;
 import md.orange.preorderback.dto.request.RestaurantFilterDTO;
+import md.orange.preorderback.exception.BookingException;
+import md.orange.preorderback.exception.RestaurantResourceException;
 import md.orange.preorderback.service.RestaurantResourceService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/restaurant-resource")
@@ -27,24 +30,45 @@ public class RestaurantResourceController {
 
     @GetMapping("/menu/{restaurantId}")
     @Operation(summary = "Get Menu by Restaurant Id", description = "Return a MenuDTO")
-    public ResponseEntity<MenuDTO> getMenuByRestaurantId(@PathVariable Long restaurantId) {
-        return ResponseEntity.ok(restaurantResourceService.getMenuByRestaurantId(restaurantId));
+    public ResponseEntity<?> getMenuByRestaurantId(@PathVariable Long restaurantId) {
+        try {
+            return ResponseEntity.ok(restaurantResourceService.getMenuByRestaurantId(restaurantId));
+        } catch (RestaurantResourceException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return ResponseEntity.internalServerError().body("Service currently unavailable, please try a little later!");
+        }
     }
 
     @GetMapping("/restaurants/has-free-table/{locationId}")
     @Operation(summary = "Verify if has free table", description = "Return a boolean var")
-    public ResponseEntity<Boolean> hasFreeTable(@PathVariable Long locationId) {
-        return ResponseEntity.ok(restaurantResourceService.isFreeTable(locationId));
+    public ResponseEntity<?> hasFreeTable(@PathVariable Long locationId) {
+        try {
+            return ResponseEntity.ok(restaurantResourceService.isFreeTable(locationId));
+        } catch (BookingException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return ResponseEntity.internalServerError().body("Service currently unavailable, please try a little later!");
+        }
     }
 
 
     @GetMapping("/locations/{restaurantId}")
     @Operation(summary = "Get locations by Restaurant Id", description = "Return a list of LocationDTO")
-    public ResponseEntity<List<LocationDTO>> getLocationsByRestaurantId(@PathVariable Long restaurantId) {
-        return ResponseEntity.ok(restaurantResourceService.getLocationsByRestaurantId(restaurantId));
+    public ResponseEntity<?> getLocationsByRestaurantId(@PathVariable Long restaurantId) {
+        try {
+            return ResponseEntity.ok(restaurantResourceService.getLocationsByRestaurantId(restaurantId));
+        } catch (RestaurantResourceException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return ResponseEntity.internalServerError().body("Service currently unavailable, please try a little later!");
+        }
     }
 
-    @GetMapping("/tabels/{locationId}")
+    @GetMapping("/tables/{locationId}")
     @Operation(summary = "Get free tables by Location Id", description = "Returns free tables based of a location " +
             " based by locationId")
     public ResponseEntity<?> getFreeTablesByLocationId(@PathVariable Long locationId) {
