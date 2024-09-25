@@ -1,22 +1,22 @@
 INSERT INTO items (id, dish_name, price, description, is_available, image, menu_id)
 VALUES
     --Andys
-    (nextval('item_id_seq'), 'Pizza Margherita', 95.00, 'Sos de roșii, cașcaval, busuioc proaspăt.', true, NULL, 1),
-    (nextval('item_id_seq'), 'Pizza Pepperoni', 120.00, 'Sos de roșii, cașcaval, salami, paprika chili.', true, NULL, 1),
-    (nextval('item_id_seq'), 'Pizza Rancho', 115.00, 'Sos de roșii, cașcaval, carne de pui, ciuperci conservate, maioneză, gogoșari conservați.', true, NULL, 1),
-    (nextval('item_id_seq'), 'Pizza Bianca', 120.00, 'Cremă de brânză, frișcă, parmezan, cașcaval Mozzarela, șuncă Tambov, ciuperci champignon prăjite, busuioc, oregano.', true, NULL, 1),
-    (nextval('item_id_seq'), 'Pizza 5 Cheeses', 115.00, 'Cașcaval, cremă de brânză, frișcă, mozzarella, parmezan, cașcaval Dor Blue, cașcaval Brie. ', true, NULL, 1),
-    (nextval('item_id_seq'), 'Pizza Barbeque', 120.00, 'Sos de roșii, cașcaval, carne de pui, salami, bacon, sos BBQ, gogoșari conservați.', true, NULL, 1),
-    (nextval('item_id_seq'), 'Pizza Fattoria', 120.00, 'Cașcaval, carne de pui, ciuperci champignion, frișcă, parmezan, ulei de trufe.', true, NULL, 1),
+    (nextval('item_id_seq'), 'Pizza Margherita', 95.00, 'Sos de roșii, cașcaval, busuioc proaspăt.', true, 'margherita.jpg', 1),
+    (nextval('item_id_seq'), 'Pizza Pepperoni', 120.00, 'Sos de roșii, cașcaval, salami, paprika chili.', true, 'pepperoni.jpg', 1),
+    (nextval('item_id_seq'), 'Pizza Rancho', 115.00, 'Sos de roșii, cașcaval, carne de pui, ciuperci conservate, maioneză, gogoșari conservați.', true, 'rancho.jpg', 1),
+    (nextval('item_id_seq'), 'Pizza Bianca', 120.00, 'Cremă de brânză, frișcă, parmezan, cașcaval Mozzarela, șuncă Tambov, ciuperci champignon prăjite, busuioc, oregano.', true, 'bianca.jpg', 1),
+    (nextval('item_id_seq'), 'Pizza 5 Cheeses', 115.00, 'Cașcaval, cremă de brânză, frișcă, mozzarella, parmezan, cașcaval Dor Blue, cașcaval Brie. ', true, '5 cheeses.jpg', 1),
+    (nextval('item_id_seq'), 'Pizza Barbeque', 120.00, 'Sos de roșii, cașcaval, carne de pui, salami, bacon, sos BBQ, gogoșari conservați.', true, 'barbeque.jpg', 1),
+    (nextval('item_id_seq'), 'Pizza Fattoria', 120.00, 'Cașcaval, carne de pui, ciuperci champignion, frișcă, parmezan, ulei de trufe.', true, 'fattoria.jpg', 1),
 
     --Corso
-    (nextval('item_id_seq'), 'Pizza Mediterranean', 150.00, 'Mozzarella, creveți, ardei gras, rucola, sos de usturoi', true, NULL, 2),
-    (nextval('item_id_seq'), 'Pizza Genovese', 150.00, 'Sos pizza, mozzarella, prosciutto crudo, rucola, roșii cherry, mozzarella bile, sos pesto.', true, NULL, 2),
-    (nextval('item_id_seq'), 'Pizza Mexicană', 135.00, 'Sos pizza, mozzarella, saleami picant, porumb, măsline verzi.', true, NULL, 2),
-    (nextval('item_id_seq'), 'Pizza Gusto', 140.00, 'Sos de pizza, file de pui afumat, mozzarella, rucola, roșii uscate, sos de usturoi, parmezan.', true, NULL, 2),
-    (nextval('item_id_seq'), 'Pizza Fresca', 125.00, 'Sos de pizza, mozzarella, gorgonzola, rucola, roșii cherry, parmezan.', true, NULL, 2),
-    (nextval('item_id_seq'), 'Pizza Furiosa', 135.00, 'Sos Pomodori pelati, mozzarella, bacon, salam, cabanos, ardei iute, chilly.', true, NULL, 2),
-    (nextval('item_id_seq'), 'Pizza Rustică', 140.00, 'Pomodori pelati, mozzarella, şuncă, salam, cabanos, ciuperci, măsline, ardei gras.', true, NULL, 2),
+    (nextval('item_id_seq'), 'Pizza Mediterranean', 150.00, 'Mozzarella, creveți, ardei gras, rucola, sos de usturoi', true, 'mediterranean.jpg', 2),
+    (nextval('item_id_seq'), 'Pizza Genovese', 150.00, 'Sos pizza, mozzarella, prosciutto crudo, rucola, roșii cherry, mozzarella bile, sos pesto.', true, 'genovese.jpg', 2),
+    (nextval('item_id_seq'), 'Pizza Mexicană', 135.00, 'Sos pizza, mozzarella, saleami picant, porumb, măsline verzi.', true, 'mexicana.jpg', 2),
+    (nextval('item_id_seq'), 'Pizza Gusto', 140.00, 'Sos de pizza, file de pui afumat, mozzarella, rucola, roșii uscate, sos de usturoi, parmezan.', true, 'gusto.png', 2),
+    (nextval('item_id_seq'), 'Pizza Fresca', 125.00, 'Sos de pizza, mozzarella, gorgonzola, rucola, roșii cherry, parmezan.', true, 'fresca.png', 2),
+    (nextval('item_id_seq'), 'Pizza Furiosa', 135.00, 'Sos Pomodori pelati, mozzarella, bacon, salam, cabanos, ardei iute, chilly.', true, 'furiosa.jpg', 2),
+    (nextval('item_id_seq'), 'Pizza Rustică', 140.00, 'Pomodori pelati, mozzarella, şuncă, salam, cabanos, ciuperci, măsline, ardei gras.', true, 'rustica.jpg', 2),
 
     --La Placinte
     (nextval('item_id_seq'), 'Plăcintă cu praz și ou',55.00, 'Făină de grâu, chefir, ulei de floarea soarelui, praz, ou de găină, ceapă verde, mărar, condimente.', true, null, 3),

@@ -6,6 +6,7 @@ import md.orange.preorderback.dto.*;
 import md.orange.preorderback.dto.request.RestaurantFilterDTO;
 import md.orange.preorderback.entity.*;
 import md.orange.preorderback.exception.BookingException;
+import md.orange.preorderback.exception.RestaurantResourceException;
 import md.orange.preorderback.repository.*;
 import md.orange.preorderback.service.RestaurantResourceService;
 import org.springframework.beans.factory.annotation.Value;
@@ -89,7 +90,7 @@ public class RestaurantResourceServiceImpl implements RestaurantResourceService 
                     .build();
         }
         //todo create custom exception
-        throw new RuntimeException("Menu not found by id " + restaurantId);
+        throw new RestaurantResourceException("We encountered an error with the menu of the restaurant, please try again later.");
     }
 
     @Override
@@ -104,19 +105,20 @@ public class RestaurantResourceServiceImpl implements RestaurantResourceService 
                     ).toList();
         }
         //todo create custom exception
-        throw new RuntimeException("Location not found by id " + restaurantId);
+        throw new RestaurantResourceException("We encountered an error with the locations, please try again later.");
     }
 
     @Override
-    public List<TableDTO> getTablesByLocationId(Long locationId) {
+    public List<TableDTO> getFreeTablesByLocationId(Long locationId) {
         log.info("Get tables by location id {}", locationId);
-        return tableRepository.getTablesByLocationId(locationId).stream()
-                .map(t -> TableDTO.builder()
-                        .id(t.getId())
-                        .locationId(t.getLocationId())
-                        .isFree(t.getIsFree())
-                        .build()
-                ).toList();
+            return tableRepository.getTablesByLocationId(locationId).stream()
+                    .filter(Table::getIsFree)
+                    .map(t -> TableDTO.builder()
+                            .id(t.getId())
+                            .locationId(t.getLocationId())
+                            .isFree(t.getIsFree())
+                            .build()
+                    ).toList();
     }
 
     @Override

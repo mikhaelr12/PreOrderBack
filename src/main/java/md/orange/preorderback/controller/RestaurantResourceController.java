@@ -19,7 +19,8 @@ public class RestaurantResourceController {
     private final RestaurantResourceService restaurantResourceService;
 
     @PostMapping
-    @Operation(summary = "Get Restaurants by filter(categoryID, name)", description = "Return a List of RestaurantDTO, to get all restaurants make the request with null param")
+    @Operation(summary = "Get Restaurants by filter(categoryID, name)", description = "Return a List of RestaurantDTO, " +
+            " to get all restaurants make the request with null param")
     public ResponseEntity<List<RestaurantDTO>> getRestaurants(@RequestBody(required = false) RestaurantFilterDTO filter) {
         return ResponseEntity.ok(restaurantResourceService.getRestaurants(filter));
     }
@@ -30,11 +31,11 @@ public class RestaurantResourceController {
         return ResponseEntity.ok(restaurantResourceService.getMenuByRestaurantId(restaurantId));
     }
 
-    @GetMapping("/restaurants/has-free-table/{locationId}")
-    @Operation(summary = "Verify if has free table", description = "Return a boolean var")
-    public ResponseEntity<Boolean> hasFreeTable(@PathVariable Long locationId) {
-        return ResponseEntity.ok(restaurantResourceService.isFreeTable(locationId));
-    }
+//    @GetMapping("/restaurants/has-free-table/{locationId}")
+//    @Operation(summary = "Verify if has free table", description = "Return a boolean var")
+//    public ResponseEntity<Boolean> hasFreeTable(@PathVariable Long locationId) {
+//        return ResponseEntity.ok(restaurantResourceService.isFreeTable(locationId));
+//    }
 
 
     @GetMapping("/locations/{restaurantId}")
@@ -44,7 +45,9 @@ public class RestaurantResourceController {
     }
 
     @GetMapping("/tabels/{locationId}")
-    public ResponseEntity<?> getTablesByLocationId(@PathVariable Long locationId) {
-        return ResponseEntity.ok(restaurantResourceService.getTablesByLocationId(locationId));
+    @Operation(summary = "Get free tables by Location Id", description = "Returns free tables based of a location " +
+            " based by locationId")
+    public ResponseEntity<?> getFreeTablesByLocationId(@PathVariable Long locationId) {
+        return ResponseEntity.ok(restaurantResourceService.getFreeTablesByLocationId(locationId));
     }
 }
