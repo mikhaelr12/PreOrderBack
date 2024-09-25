@@ -31,11 +31,11 @@ public class RestaurantResourceController {
         return ResponseEntity.ok(restaurantResourceService.getMenuByRestaurantId(restaurantId));
     }
 
-//    @GetMapping("/restaurants/has-free-table/{locationId}")
-//    @Operation(summary = "Verify if has free table", description = "Return a boolean var")
-//    public ResponseEntity<Boolean> hasFreeTable(@PathVariable Long locationId) {
-//        return ResponseEntity.ok(restaurantResourceService.isFreeTable(locationId));
-//    }
+    @GetMapping("/restaurants/has-free-table/{locationId}")
+    @Operation(summary = "Verify if has free table", description = "Return a boolean var")
+    public ResponseEntity<Boolean> hasFreeTable(@PathVariable Long locationId) {
+        return ResponseEntity.ok(restaurantResourceService.isFreeTable(locationId));
+    }
 
 
     @GetMapping("/locations/{restaurantId}")

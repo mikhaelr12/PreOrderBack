@@ -89,7 +89,6 @@ public class RestaurantResourceServiceImpl implements RestaurantResourceService 
                     .items(itemDTOS)
                     .build();
         }
-        //todo create custom exception
         throw new RestaurantResourceException("We encountered an error with the menu of the restaurant, please try again later.");
     }
 
@@ -104,7 +103,6 @@ public class RestaurantResourceServiceImpl implements RestaurantResourceService 
                             .build()
                     ).toList();
         }
-        //todo create custom exception
         throw new RestaurantResourceException("We encountered an error with the locations, please try again later.");
     }
 
