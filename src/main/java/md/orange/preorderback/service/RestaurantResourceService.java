@@ -15,7 +15,7 @@ public interface RestaurantResourceService {
 
     List<LocationDTO> getLocationsByRestaurantId(Long restaurantId);
 
-    List<TableDTO> getTablesByLocationId(Long locationId);
+    List<TableDTO> getFreeTablesByLocationId(Long locationId);
 
     Boolean isFreeTable(Long tableId);
 
