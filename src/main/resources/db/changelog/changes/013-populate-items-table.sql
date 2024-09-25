@@ -152,49 +152,70 @@ VALUES
 
     --Vasabi
     (nextval('item_id_seq'), 'Philadelphia Clasic', 129.00, 'Somon, avocado, castraveți, cremă philadelphia.', true,
-     null, 8),
-    (nextval('item_id_seq'), 'Canada', 195.00, 'Anghila afumată, somon, avocado, cremă philadelphia, susan', true, null,
+     'philadelphia clasic.png
+', 8),
+    (nextval('item_id_seq'), 'Canada', 195.00, 'Anghila afumată, somon, avocado, cremă philadelphia, susan', true, 'canada.png
+',
      8),
     (nextval('item_id_seq'), 'Crunch Shrimps', 175.00,
-     'Creveți, icre tobico, tempura, castraveți, cremă philadelphia, susan, maioneză japoneză', true, null, 8),
-    (nextval('item_id_seq'), 'Takusen', 164.00, 'Creveți, icre tobico, maioneză japoneză, avocado.', true, null, 8),
+     'Creveți, icre tobico, tempura, castraveți, cremă philadelphia, susan, maioneză japoneză', true, 'crunch shrimps.png
+', 8),
+    (nextval('item_id_seq'), 'Takusen', 164.00, 'Creveți, icre tobico, maioneză japoneză, avocado.', true, 'takusen.png
+', 8),
     (nextval('item_id_seq'), 'Miso Ocean', 95.00, 'Bulion miso, somon, biban, vakame, tofu, ciuperci shiitaki', true,
-     null, 8),
-    (nextval('item_id_seq'), 'Miso Classic', 59.00, 'Bulion miso, ciuperci shiitaki, vakame, tofu', true, null, 8),
-    (nextval('item_id_seq'), 'Karami Classic', 129.00, 'Bulion karami, creveți, somon, biban, vakame', true, null, 8),
+     'miso ocean.png
+', 8),
+    (nextval('item_id_seq'), 'Miso Classic', 59.00, 'Bulion miso, ciuperci shiitaki, vakame, tofu', true, 'miso classic.png
+', 8),
+    (nextval('item_id_seq'), 'Karami Classic', 129.00, 'Bulion karami, creveți, somon, biban, vakame', true, 'karami classic.png
+', 8),
 
     --Starkebab
     (nextval('item_id_seq'), 'Starkebab pui', 79.00,
      'Lavaș, carne de pui, cartofi copți, salată de varză, verdeață, roșii proaspete, castraveți murați, sos roșu Harira, sos alb cu usturoi.',
-     true, null, 9),
+     true, 'starkebab pui.png
+', 9),
     (nextval('item_id_seq'), 'Starkebab pork', 83.00,
      'Lavaș, carne de porc, salată din varză, castraveți murați, ceapă roșie, cartofi copți, sos alb cu usturoi, sos BBQ,',
-     true, null, 9),
+     true, 'starkebab pork.png
+', 9),
     (nextval('item_id_seq'), 'Cheese Starkebab', 85.00,
      'Lavaș, carne de pui, cașcaval, brânza feta, salată de varză, castraveți proaspeți, sos Caesar, sos alb cu usturoi.',
-     true, null, 9),
+     true, 'cheese starkebab.jpg
+', 9),
     (nextval('item_id_seq'), 'Starkebab Veggie', 79.00,
-     'Lavaș, falafel, hummus, vânătă teriaki, ardei copt, salata Iceberg, sos alb de usturoi.', true, null, 9),
-    (nextval('item_id_seq'), 'Family Box x3', 245.00, '3 x Starkebab Pui + Coca Cola 1,25L', true, null, 9),
-    (nextval('item_id_seq'), 'Family Box x5', 395.00, '5 x Starkebab Pui + 2 x Coca Cola 1,25L', true, null, 9),
-    (nextval('item_id_seq'), 'Family Box x7', 545.00, '7 x Starkebab Pui + 3 x Coca Cola 1,25L', true, null, 9),
+     'Lavaș, falafel, hummus, vânătă teriaki, ardei copt, salata Iceberg, sos alb de usturoi.', true, 'starkebab veggie.png
+', 9),
+    (nextval('item_id_seq'), 'Family Box x3', 245.00, '3 x Starkebab Pui + Coca Cola 1,25L', true, 'Familyx3.png
+', 9),
+    (nextval('item_id_seq'), 'Family Box x5', 395.00, '5 x Starkebab Pui + 2 x Coca Cola 1,25L', true, 'Familyx5.png
+', 9),
+    (nextval('item_id_seq'), 'Family Box x7', 545.00, '7 x Starkebab Pui + 3 x Coca Cola 1,25L', true, 'Familyx7.png
+', 9),
 
     --Twister
     (nextval('item_id_seq'), 'Twister Fitness', 96.00,
      'Lavas din făina integrala, Fileu de curcan, avocado, varza Pechin, salata Lola, roșii cherry, castraveți proaspeți, sos de iaurt',
-     true, null, 10),
+     true, 'twister fitness.jpg
+', 10),
     (nextval('item_id_seq'), 'Twist de pui', 84.00,
-     'Lavaș, carne de pui, cartofi pai, varză, castraveți murați, roșii, sos alb, sos roșu.', true, null, 10),
+     'Lavaș, carne de pui, cartofi pai, varză, castraveți murați, roșii, sos alb, sos roșu.', true, 'twist de pui.jpg
+', 10),
     (nextval('item_id_seq'), 'Black Twist de pui', 86.00,
-     'Lavaș negru, carne de pui, cartofi pai, varză, castraveți murați, roșii, sos alb, sos roșu.', true, null, 10),
+     'Lavaș negru, carne de pui, cartofi pai, varză, castraveți murați, roșii, sos alb, sos roșu.', true, 'black twist de pui.jpg
+', 10),
     (nextval('item_id_seq'), 'Twist de porc', 89.00,
-     'Lavaș, carne de porc, cartofi pai, varză, castraveți murați, roșii, sos alb, sos roșu.', true, null, 10),
+     'Lavaș, carne de porc, cartofi pai, varză, castraveți murați, roșii, sos alb, sos roșu.', true, 'twist de porc.jpg
+', 10),
     (nextval('item_id_seq'), 'Falafel Veggie Twist', 84.00,
-     'Falafel, cartofi pai, varza, roșii, castraveți murati, ketciup, sos.', true, null, 10),
+     'Falafel, cartofi pai, varza, roșii, castraveți murati, ketciup, sos.', true, 'falafel veggie twist.jpg
+', 10),
     (nextval('item_id_seq'), 'Meniu Good Twist pui', 132.00, 'Twist de pui, cartofi pai, sos alb, Coca-cola.', true,
-     null, 10),
+     'meniu good twist pui.jpg
+', 10),
     (nextval('item_id_seq'), 'Meniu Good Twist porc', 139.00, 'Twist de porc, cartofi pai, sos alb, Coca-cola.', true,
-     null, 10)
+     'meniu good twist porc.jpg
+', 10)
 
 
 
