@@ -126,6 +126,7 @@ public class BookingServiceImpl implements BookingService {
                 }
             }
 
+            text += "Produse: \n";
             text += restaurantResourceService.getItemsToText(bookingdto.getItemIds());
             text += "Total: " + booking.getFinalPrice() + " MDL\n";
             text += "Multumim pentru comanda!";
