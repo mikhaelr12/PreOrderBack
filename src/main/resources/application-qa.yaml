@@ -20,16 +20,17 @@ spring:
     change-log: db/changelog/db.changelog-master.yaml
     enabled: true
   mail:
-    host: smtp-mail.outlook.com
+    host: smtp.mail.ru
     port: 587
-    username: preorder.orange@outlook.com
-    password: iFDUivFfRAkodRx
+    username: orange.preorder@mail.ru
+    password: 0kqdRAEpDrsNta1Fs98E
     properties:
       mail:
         smtp:
           auth: true
           starttls:
             enable: true
+
 
 application:
   name: @project.artifactId@
