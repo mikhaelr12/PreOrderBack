@@ -40,7 +40,7 @@ VALUES
     --La Placinte
     (nextval('item_id_seq'), 'Plăcintă cu praz și ou', 55.00,
      'Făină de grâu, chefir, ulei de floarea soarelui, praz, ou de găină, ceapă verde, mărar, condimente.', true,
-     'placinta cu praz si ou', 3),
+     'placinta cu praz si ou.png', 3),
     (nextval('item_id_seq'), 'Salată cu ardei copt și cremă de brânză de oi', 85.00,
      'Brânză de oi, cremă de brânză, frișcă, ardei copt, ulei nerafinat, dressing pentru salată, verdeață, condimente, chiflă de secară.',
      true, 'salata cu ardei copt si crema de branza de oi.png', 3),
@@ -153,7 +153,7 @@ VALUES
     (nextval('item_id_seq'), 'Black Twist de pui', 86.00,
      'Lavaș negru, carne de pui, cartofi pai, varză, castraveți murați, roșii, sos alb, sos roșu.', true, 'black twist de pui.jpg', 10),
     (nextval('item_id_seq'), 'Twist de porc', 89.00,
-     'Lavaș, carne de porc, cartofi pai, varză, castraveți murați, roșii, sos alb, sos roșu.', true, '', 10),
+     'Lavaș, carne de porc, cartofi pai, varză, castraveți murați, roșii, sos alb, sos roșu.', true, 'twist de porc.jpg', 10),
     (nextval('item_id_seq'), 'Falafel Veggie Twist', 84.00,
      'Falafel, cartofi pai, varza, roșii, castraveți murati, ketciup, sos.', true, 'falafel veggie twist.jpg', 10),
     (nextval('item_id_seq'), 'Meniu Good Twist pui', 132.00, 'Twist de pui, cartofi pai, sos alb, Coca-cola.', true,
