@@ -5,8 +5,10 @@ import md.orange.preorderback.dto.MenuDTO;
 import md.orange.preorderback.dto.RestaurantDTO;
 import md.orange.preorderback.dto.TableDTO;
 import md.orange.preorderback.dto.request.RestaurantFilterDTO;
+import md.orange.preorderback.entity.Restaurant;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface RestaurantResourceService {
     List<RestaurantDTO> getRestaurants(RestaurantFilterDTO filter);
@@ -26,4 +28,6 @@ public interface RestaurantResourceService {
     String getItemsToText(List<Long> items);
 
     void freeTable();
+
+    Optional<Restaurant> findRestaurantByLocationId(Long locationId);
 }

@@ -31,4 +31,5 @@ public class BookingDTO {
     @NotNull
     private List<Long> itemIds;
     private Status status;
+    private String bookingDate;
 }

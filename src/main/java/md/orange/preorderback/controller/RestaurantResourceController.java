@@ -3,7 +3,6 @@ package md.orange.preorderback.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import md.orange.preorderback.dto.LocationDTO;
 import md.orange.preorderback.dto.RestaurantDTO;
 import md.orange.preorderback.dto.request.RestaurantFilterDTO;
 import md.orange.preorderback.exception.BookingException;

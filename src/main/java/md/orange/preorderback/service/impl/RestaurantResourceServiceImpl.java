@@ -161,6 +161,13 @@ public class RestaurantResourceServiceImpl implements RestaurantResourceService 
         tableRepository.freeTable();
     }
 
+    @Override
+    public Optional<Restaurant> findRestaurantByLocationId(Long locationId) {
+        return locationRepository.findById(locationId)
+                .flatMap(value -> restaurantRepository.findById(value.getRestaurantId()));
+
+    }
+
     private byte[] getImage(String name) {
         if (!StringUtils.hasText(name)) {
             return new byte[0];
