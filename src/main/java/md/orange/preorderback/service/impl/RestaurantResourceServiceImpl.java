@@ -16,7 +16,9 @@ import org.springframework.util.StringUtils;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Slf4j
 @Service
@@ -109,14 +111,14 @@ public class RestaurantResourceServiceImpl implements RestaurantResourceService 
     @Override
     public List<TableDTO> getFreeTablesByLocationId(Long locationId) {
         log.info("Get tables by location id {}", locationId);
-            return tableRepository.getTablesByLocationId(locationId).stream()
-                    .filter(Table::getIsFree)
-                    .map(t -> TableDTO.builder()
-                            .id(t.getId())
-                            .locationId(t.getLocationId())
-                            .isFree(t.getIsFree())
-                            .build()
-                    ).toList();
+        return tableRepository.getTablesByLocationId(locationId).stream()
+                .filter(Table::getIsFree)
+                .map(t -> TableDTO.builder()
+                        .id(t.getId())
+                        .locationId(t.getLocationId())
+                        .isFree(t.getIsFree())
+                        .build()
+                ).toList();
     }
 
     @Override
@@ -137,21 +139,27 @@ public class RestaurantResourceServiceImpl implements RestaurantResourceService 
     public Double calcAndGetPrice(List<Long> items) {
         List<Item> itemList = itemRepository.findAllById(items);
 
-        Double price = 0.0;
+        AtomicReference<Double> price = new AtomicReference<>(0.0);
 
-        for (Item item : itemList) {
-            price += item.getPrice();
+        for (Long i : items) {
+            itemList.stream()
+                    .filter(itm -> Objects.equals(itm.getId(), i))
+                    .findFirst()
+                    .ifPresent(item -> price.updateAndGet(v -> v + item.getPrice()));
         }
 
-        return price;
+        return price.get();
     }
 
     @Override
     public String getItemsToText(List<Long> items) {
         StringBuilder text = new StringBuilder();
         List<Item> itemList = itemRepository.findAllById(items);
-        for (Item item : itemList) {
-            text.append(item.getDishName()).append(" - ").append(item.getPrice()).append("\n");
+        for (Long i : items) {
+            itemList.stream()
+                    .filter(itm -> Objects.equals(itm.getId(), i))
+                    .findFirst()
+                    .ifPresent(item -> text.append(item.getDishName()).append(" - ").append(item.getPrice()).append("\n"));
         }
         return text.toString();
     }
