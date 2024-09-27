@@ -34,15 +34,25 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public List<BookingDTO> getBookings(Long locationId) {
         CustomMap<List<Long>, String> mapFromStringToLongList = (items) -> {
+            if (items == null || items.trim().isEmpty()) {
+                return new ArrayList<>();
+            }
             List<String> arrayToList = List.of(
                     items.replace("[", "").replace("]", "").split(",")
             );
             List<Long> arrayToLongList = new ArrayList<>();
-            for (String s : arrayToList) {
-                arrayToLongList.add(Long.parseLong(s.trim()));
+            try {
+                for (String s : arrayToList) {
+                    if (!s.trim().isEmpty()) {
+                        arrayToLongList.add(Long.parseLong(s.trim()));
+                    }
+                }
+            } catch (NumberFormatException e) {
+                throw new RuntimeException("Invalid number format in items string: " + items, e);
             }
             return arrayToLongList;
         };
+
 
         return bookingRepository.findAllByLocationId(locationId).stream()
                 .map(b -> BookingDTO.builder()
@@ -83,7 +93,6 @@ public class BookingServiceImpl implements BookingService {
                         .items(bookingdto.getItemIds().toString())
                         .build()
         );
-
         new Thread(() -> sendEmail(bookingdto, booking)).start();
     }
 
@@ -92,7 +101,6 @@ public class BookingServiceImpl implements BookingService {
     public void finalizeBooking(Long bookingId, Status status) {
         log.info("Finalizing booking: {} with status {}", bookingId, status);
         Optional<Booking> booking = bookingRepository.findById(bookingId);
-
         if (booking.isPresent()) {
             booking.get().setBookingStatus(status);
             bookingRepository.save(booking.get());
