@@ -30,8 +30,9 @@ public class SecurityConfig{
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**","/products/**").permitAll()
-                        .requestMatchers(("/product-manager/**")).hasRole("ADMIN")
+                        .requestMatchers("/auth/**", "/booking/**",
+                                "/category/**", "/restaurant-resource/**").permitAll()
+                        .requestMatchers(("/item-manager/**")).hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
