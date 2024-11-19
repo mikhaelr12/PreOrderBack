@@ -3,6 +3,7 @@ package md.orange.preorderback.service.impl;
 import lombok.AllArgsConstructor;
 import md.orange.preorderback.dto.UserDTO;
 import md.orange.preorderback.entity.User;
+import md.orange.preorderback.enums.Role;
 import md.orange.preorderback.exception.UserException;
 import md.orange.preorderback.repository.UserRepository;
 import md.orange.preorderback.service.AuthenticationService;
@@ -25,11 +26,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             throw new UserException("Username is already in use");
         }
         User newUser = new User();
-        newUser.setUsername(input.getUsername());
-        newUser.setPassword(passwordEncoder.encode(input.getPassword()));
-        newUser.setEmail(input.getEmail());
-        newUser.setPhone(input.getPhone());
-        userRepository.save(newUser);
+        if(input.getRole() == null)
+            newUser.setRole(Role.USER);
+        else newUser.setRole(input.getRole());
+
+            newUser.setUsername(input.getUsername());
+            newUser.setPassword(passwordEncoder.encode(input.getPassword()));
+            newUser.setEmail(input.getEmail());
+            newUser.setPhone(input.getPhone());
+            userRepository.save(newUser);
+
     }
 
     public User authenticate(UserDTO input) {

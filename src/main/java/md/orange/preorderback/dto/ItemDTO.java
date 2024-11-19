@@ -16,4 +16,5 @@ public class ItemDTO {
     private String description;
     private Boolean isAvailable;
     private byte[] image;
+    private Long menuId;
 }
