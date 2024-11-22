@@ -21,10 +21,11 @@ public class RestaurantManagerServiceImpl implements RestaurantManagerService {
     private final LocationRepository locationRepository;
 
     @Override
-    public void addRestaurant(RestaurantDTO restaurantDTO) {
+    public void addRestaurant(RestaurantDTO restaurantDTO, Long CategoryId) {
         // Salvare restaurant
         Restaurant restaurant = Restaurant.builder()
                 .restaurantName(restaurantDTO.getRestaurantName())
+                .categoryId(CategoryId)
                 .build();
          restaurant = restaurantRepository.save(restaurant);
 
