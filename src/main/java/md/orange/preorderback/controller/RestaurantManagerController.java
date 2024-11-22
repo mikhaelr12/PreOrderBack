@@ -14,8 +14,8 @@ public class RestaurantManagerController {
     private final RestaurantManagerService restaurantManagerService;
 
     @PostMapping
-    public ResponseEntity<?> addRestaurant(@RequestBody RestaurantDTO restaurantDTO) {
-        restaurantManagerService.addRestaurant(restaurantDTO);
+    public ResponseEntity<?> addRestaurant(@RequestBody RestaurantDTO restaurantDTO, Long CategoryId) {
+        restaurantManagerService.addRestaurant(restaurantDTO, CategoryId);
         return ResponseEntity.ok("Restaurant added");
     }
 
