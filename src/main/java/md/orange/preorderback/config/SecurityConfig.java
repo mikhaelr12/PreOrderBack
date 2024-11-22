@@ -33,6 +33,8 @@ public class SecurityConfig{
                         .requestMatchers("/auth/**", "/booking/**",
                                 "/category/**", "/restaurant-resource/**").permitAll()
                         .requestMatchers(("/item-manager/**")).hasRole("ADMIN")
+                        .requestMatchers(("/category-manager/**")).hasRole("ADMIN")
+                        .requestMatchers(("/table-manager/**")).hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
