@@ -2,11 +2,13 @@ package md.orange.preorderback.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity(name = "menus")
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Menu {
