@@ -10,6 +10,7 @@ import md.orange.preorderback.exception.RestaurantResourceException;
 import md.orange.preorderback.repository.*;
 import md.orange.preorderback.service.RestaurantResourceService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -24,8 +25,8 @@ import java.util.concurrent.atomic.AtomicReference;
 @Service
 @RequiredArgsConstructor
 public class RestaurantResourceServiceImpl implements RestaurantResourceService {
-//    @Value("${restaurant.resources.path}")
-//    private String restaurantResourcePath;
+    @Value("${restaurant.resources.path}")
+    private String restaurantResourcePath;
     private final RestaurantRepository restaurantRepository;
     private final LocationRepository locationRepository;
     private final MenuRepository menuRepository;
@@ -52,7 +53,7 @@ public class RestaurantResourceServiceImpl implements RestaurantResourceService 
                 .map(r -> RestaurantDTO.builder()
                         .id(r.getId())
                         .restaurantName(r.getRestaurantName())
-                        //.logo(getImage(r.getLogo()))
+                        .logo(getImage(r.getLogo()))
                         .build()
                 ).toList();
 
@@ -81,7 +82,7 @@ public class RestaurantResourceServiceImpl implements RestaurantResourceService 
                             .dishName(item.getDishName())
                             .price(item.getPrice())
                             .description(item.getDescription())
-                            //.image(getImage(item.getImage()))
+                            .image(getImage(item.getImage()))
                             .isAvailable(item.getIsAvailable())
                             .build())
                     .toList();
@@ -176,22 +177,18 @@ public class RestaurantResourceServiceImpl implements RestaurantResourceService 
 
     }
 
-//    private byte[] getImage(String name) {
-//        if (!StringUtils.hasText(name)) {
-//            return new byte[0];
-//        }
-//
-//        Path path = Path.of(restaurantResourcePath, name);
-//
-//        if (Files.exists(path)) {
-//            try {
-//                return Files.readAllBytes(path);
-//            } catch (Exception e) {
-//                log.error("Failed to read image {}, cause {}", name, e.getMessage());
-//                return new byte[0];
-//            }
-//        } else {
-//            return new byte[0];
-//        }
-//    }
+    private byte[] getImage(String name) {
+        if (!StringUtils.hasText(name)) {
+            return new byte[0];
+        }
+
+        try {
+            Path path = new ClassPathResource("images/" + name).getFile().toPath();
+            return Files.readAllBytes(path);
+        } catch (Exception e) {
+            log.error("Failed to read image {}, cause {}", name, e.getMessage());
+            return new byte[0];
+        }
+    }
+
 }

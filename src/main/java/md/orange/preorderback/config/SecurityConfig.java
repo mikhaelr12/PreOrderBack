@@ -25,20 +25,33 @@ public class SecurityConfig{
 
     @Bean
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
+        http
                 .csrf(csrf -> csrf.disable())
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**", "/booking/**",
-                                "/category/**", "/restaurant-resource/**").permitAll()
-                        .requestMatchers(("/item-manager/**")).hasRole("ADMIN")
-                        .requestMatchers(("/category-manager/**")).hasRole("ADMIN")
-                        .requestMatchers(("/table-manager/**")).hasRole("ADMIN")
-                        .anyRequest().authenticated())
+                        .requestMatchers(
+                                "/auth/**",              // Changed from /api/v1/auth/** to /auth/**
+                                "/auth/register",        // Explicitly allowing registration endpoint
+                                "/auth/login",          // Also allowing login endpoint
+                                "/v2/api-docs",
+                                "/v3/api-docs",
+                                "/v3/api-docs/**",
+                                "/swagger-resources",
+                                "/swagger-resources/**",
+                                "/configuration/ui",
+                                "/configuration/security",
+                                "/swagger-ui/**",
+                                "/webjars/**",
+                                "/swagger-ui.html"
+                        ).permitAll()
+                        .anyRequest().permitAll()
+                )
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
                 .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
     }
 
     @Bean
